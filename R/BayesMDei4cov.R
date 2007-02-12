@@ -1,12 +1,12 @@
 BayesMDei4cov <- function(formula, covariate, total, data, lambda1 = 2,
-                          lambda2 = 4,
-                      tune.dr = NULL, tune.beta = NULL, tune.gamma
-                       = NULL, tune.delta = NULL,
+                          lambda2 = 4, covariateprior = NULL,
+                          tune.dr = NULL, tune.beta = NULL, tune.gamma
+                          = NULL, tune.delta = NULL,
                           start.dr = NULL, start.betas = NULL,
                           start.gamma = NULL, start.delta = NULL,
                           sample = 1000,
-                      thin = 1, burnin = 1000, verbose = 0, ret.beta =
-                      'r', ret.mcmc = TRUE, usrfun = NULL, ...){
+                          thin = 1, burnin = 1000, verbose = 0, ret.beta =
+                          'r', ret.mcmc = TRUE, usrfun = NULL, ...){
 
   if(thin < 1){stop('thin must be positive integer')}
   if(sample < 1){stop('thin must be positive integer')}
@@ -121,6 +121,30 @@ has incorrect dimensions")}
 {stop("'tune.delta'
 has incorrect dimensions")}
 
+  if(is.null(covariateprior)){
+    covprior <- 0
+    delmean <- gammean <- rep(0, NG*(NP-1))
+    delsd <- gamsd <- rep(1, NG*(NP-1))
+  }else{
+    covprior <- 1
+    delmean <- covariateprior[[1]]
+    delsd <- covariateprior[[2]]
+    gammean <- covariateprior[[3]]
+    gamsd <- covariateprior[[4]]
+    if(identical(as.numeric(dim(delmean)), c(NG, NP-1))!=TRUE) 
+      {stop("matrix of prior means for delta has incorrect dimensions")}
+    if(identical(as.numeric(dim(delsd)), c(NG, NP-1))!=TRUE) 
+      {stop("matrix of prior sd for delta has incorrect dimensions")}
+    if(identical(as.numeric(dim(gammean)), c(NG, NP-1))!=TRUE) 
+      {stop("matrix of prior means for gamma has incorrect dimensions")}
+    if(identical(as.numeric(dim(gamsd)), c(NG, NP-1))!=TRUE) 
+      {stop("matrix of prior sd for gamma has incorrect dimensions")}
+    if(min(gamsd)<=0)
+      {stop("prior sd for gamma must be > 0")}
+    if(min(gamsd)<=0)
+      {stop("prior sd for delta must be > 0")}
+  }
+  
 
 
 
@@ -156,6 +180,11 @@ ret.beta")}
                   as.integer(Precincts),
                   as.numeric(lambda1),
                   as.numeric(lambda2),
+                  as.integer(covprior),
+                  as.numeric(delmean),
+                  as.numeric(delsd),
+                  as.numeric(gammean),
+                  as.numeric(gamsd),
                   as.integer(sample),
                   as.integer(thin),
                   as.integer(burnin),

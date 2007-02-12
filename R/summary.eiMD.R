@@ -10,8 +10,7 @@ summary.eiMD <- function(object, short = TRUE, ...) {
                                         nrow = length(idx), ncol = length(idx[[1]]))))
     idx <- lapply(idx, as.character)
     idx <- lapply(idx, unique)
-  }
-  else {
+  } else {
     idx <- dimnames(object$draws$Cell.counts)[1:2]
   }
   names(idx) <- c("rows", "columns")
@@ -38,18 +37,28 @@ summary.eiMD <- function(object, short = TRUE, ...) {
     }
   }
   if (short) {
-    tmp <- array(object$acc.ratios$beta.acc,
-                   dim = sapply(idx, length),
-                   dimnames = idx)
+    # old code created r by c array, not r by (c-1) by l array
+    #tmp <- array(object$acc.ratios$beta.acc,
+    #               dim = sapply(idx, length),
+    #               dimnames = idx)
+    rr <- length(idx[[1]])#
+    cc <- length(idx[[2]]) - 1#
+    ll <- length(object$acc.ratios$beta.acc)/(rr*cc)#
+    tmp <- array(object$acc.ratios$beta.acc,#
+                   dim = c(rr,cc,ll))#
     object$acc.ratios$beta.acc <- apply(tmp, c(1,2), mean)
-  }
-  else  { 
+    dimnames(object$acc.ratios$beta.acc) <- list(idx[[1]], idx[[2]][1:cc])#
+  }  else  {
+    #old code filled matrix in wrong direction
     bacc <- object$acc.ratios$beta.acc
-    nr <- length(bacc) / cells
+    rr <- length(idx[[1]])#
+    cc <- length(idx[[2]]) - 1#
+    ll <- length(object$acc.ratios$beta.acc)/(rr*cc)#
     object$acc.ratios$beta.acc <-  matrix(bacc,
-                                          ncol = cells,
-                                          nrow = nr,
-                                          dimnames = list(as.character(1:nr), cnames))
+                                          nrow = ll,
+                                          ncol = rr*cc,
+                                          dimnames =
+                                          list(as.character(1:ll),cnames[1:(rr*cc)]), byrow=TRUE)#
   }
 
   for (ii in names(object$draws) %w/o% c("Beta")) {

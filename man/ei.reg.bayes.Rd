@@ -6,7 +6,7 @@
 regression. }
 
 \usage{
-ei.reg.bayes(formula, data, sample = 1000, weights = NULL)
+ei.reg.bayes(formula, data, sample = 1000, weights = NULL, truncate=FALSE)
 }
 
 \arguments{
@@ -15,6 +15,8 @@ ei.reg.bayes(formula, data, sample = 1000, weights = NULL)
 \item{data}{data frame containing the variables specified in formula}
 \item{sample}{number of draws from the posterior}
 \item{weights}{a vector of weights}
+\item{truncate}{if TRUE, imposes a proper uniform prior on the unit
+  hypercube for the coefficients; if FALSE, an improper uniform prior is assumed}
 }
 
 \value{ A list containing \itemize{
@@ -35,6 +37,11 @@ ei.reg.bayes(formula, data, sample = 1000, weights = NULL)
 
   The improper prior is \eqn{p(\beta,\sigma^2|X)\propto
     \sigma^{-2}}{p(beta,sigma^2|X) proportional to 1/sigma^2}.
+
+  The proper prior is \eqn{p(\beta, \sigma^2|x) \propto I(\beta \in
+    [0,1])\times \sigma^{-2}}{p(beta, sigma^2|x) proportional to I(beta
+    in [0,1])* 1/sigma^2}.
+
 }
 
 \references{

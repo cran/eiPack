@@ -32,6 +32,11 @@ rbycei_fcn3 (SEXP drvector,
 	     SEXP Precincts,
 	     SEXP Lambda1,
 	     SEXP Lambda2,
+	     SEXP Covprior, 
+	     SEXP Delmean,
+	     SEXP Delsd,
+	     SEXP Gammean,
+	     SEXP Gamsd,
 	     SEXP Sample,
 	     SEXP Thin,
 	     SEXP Burnin,
@@ -55,6 +60,7 @@ rbycei_fcn3 (SEXP drvector,
   double drcurr, drprop, drcurr_ll, drprop_ll, tmp_currB, tmp_propB;
   double gcurr, gprop, gcurr_ll, gprop_ll, tmp_gcurr, tmp_gprop;
   double dcurr, dprop, dcurr_ll, dprop_ll, tmp_dcurr, tmp_dprop;
+  int covprior; 
 
 
   ng = INTEGER(NG)[0];
@@ -70,6 +76,7 @@ rbycei_fcn3 (SEXP drvector,
   iters = burn + samp*thin;
   verbose = INTEGER(Verbose)[0];
 
+  covprior = INTEGER(Covprior)[0];
 
       PROTECT(beta_dim = allocVector(INTSXP, 3));
     ++nProtected; 
@@ -260,52 +267,65 @@ rbycei_fcn3 (SEXP drvector,
 
     
 
-    for(rr = 0; rr < ng; ++rr){
-      for(cc = 0; cc < npm1; ++cc){
-	gcurr = REAL(gammamatrix)[rr + ng*cc];
-	gprop = rnorm(gcurr, REAL(tuneG)[rr + cc*ng]);
+  for(rr = 0; rr < ng; ++rr){
+    for(cc = 0; cc < npm1; ++cc){
+      gcurr = REAL(gammamatrix)[rr + ng*cc];
+      gprop = rnorm(gcurr, REAL(tuneG)[rr + cc*ng]);
+      
+      dcurr = REAL(deltamatrix)[rr + ng*cc];
+      dprop = rnorm(dcurr, REAL(tuneD)[rr + cc*ng]);
+      
+      gcurr_ll = 0;
+      gprop_ll = 0;
+      for(ii = 0; ii < prec; ++ii){
+	tmp_gcurr = exp(gcurr + dcurr*REAL(ZZ)[ii]);
+	tmp_gprop = exp(gprop + dprop*REAL(ZZ)[ii]);
+	gcurr_ll += -1*lgammafn(REAL(drvector)[rr] * tmp_gcurr) + REAL(drvector)[rr]*tmp_gcurr*log(REAL(betaarray)[rr + ng*cc + ng*np*ii]);
+	gprop_ll += -1*lgammafn(REAL(drvector)[rr] * tmp_gprop) + REAL(drvector)[rr]*tmp_gprop*log(REAL(betaarray)[rr + ng*cc + ng*np*ii]);
+      }
+      
+      
+      /*	Rprintf("%f %f %f %f\n", gcurr, gprop, gprop_ll, gcurr_ll); */
+      
+      for(ii = 0; ii < prec; ++ii){
+	tmp_currB = 0;
+	tmp_propB = 0;
+	for(qq = 0; qq < np; ++qq){
+	  tmp_currB += REAL(drvector)[rr] * exp(REAL(gammamatrix)[rr + ng*qq] + REAL(deltamatrix)[rr + ng*qq]*REAL(ZZ)[ii]);
+	  /* Rprintf("%i %f \n", qq,  exp(REAL(gammamatrix)[rr + ng*qq] + REAL(deltamatrix)[rr + ng*qq]*REAL(ZZ)[ii]));*/
+	}
 	
-	dcurr = REAL(deltamatrix)[rr + ng*cc];
-	dprop = rnorm(dcurr, REAL(tuneD)[rr + cc*ng]);
-
-	gcurr_ll = 0;
-	gprop_ll = 0;
-	for(ii = 0; ii < prec; ++ii){
-	  tmp_gcurr = exp(gcurr + dcurr*REAL(ZZ)[ii]);
-	  tmp_gprop = exp(gprop + dprop*REAL(ZZ)[ii]);
-	  gcurr_ll += -1*lgammafn(REAL(drvector)[rr] * tmp_gcurr) + REAL(drvector)[rr]*tmp_gcurr*log(REAL(betaarray)[rr + ng*cc + ng*np*ii]);
-	  gprop_ll += -1*lgammafn(REAL(drvector)[rr] * tmp_gprop) + REAL(drvector)[rr]*tmp_gprop*log(REAL(betaarray)[rr + ng*cc + ng*np*ii]);
-	}
+	tmp_propB = tmp_currB - REAL(drvector)[rr] * exp(gcurr + dcurr*REAL(ZZ)[ii]) + REAL(drvector)[rr] * exp(gprop + dprop*REAL(ZZ)[ii]);
+	/*Rprintf("%i %f \n",  cc, exp(gcurr + REAL(deltamatrix)[rr + ng*cc]*REAL(ZZ)[ii]));*/
+	gcurr_ll += lgammafn(tmp_currB);
+	gprop_ll += lgammafn(tmp_propB);
+	
 
 
-	/*	Rprintf("%f %f %f %f\n", gcurr, gprop, gprop_ll, gcurr_ll); */
-
-	for(ii = 0; ii < prec; ++ii){
-	  tmp_currB = 0;
-	  tmp_propB = 0;
-	  for(qq = 0; qq < np; ++qq){
-	    tmp_currB += REAL(drvector)[rr] * exp(REAL(gammamatrix)[rr + ng*qq] + REAL(deltamatrix)[rr + ng*qq]*REAL(ZZ)[ii]);
-	    /* Rprintf("%i %f \n", qq,  exp(REAL(gammamatrix)[rr + ng*qq] + REAL(deltamatrix)[rr + ng*qq]*REAL(ZZ)[ii]));*/
-	  }
-	  tmp_propB = tmp_currB - REAL(drvector)[rr] * exp(gcurr + dcurr*REAL(ZZ)[ii]) + REAL(drvector)[rr] * exp(gprop + dprop*REAL(ZZ)[ii]);
-	  /*Rprintf("%i %f \n",  cc, exp(gcurr + REAL(deltamatrix)[rr + ng*cc]*REAL(ZZ)[ii]));*/
-	  gcurr_ll += lgammafn(tmp_currB);
-	  gprop_ll += lgammafn(tmp_propB);
 	  
-  if(verbose > 0 && kk % verbose == 0){
-    /*    Rprintf("%f %f %f %f %f %f \n", gcurr, gprop, gcurr_ll, gprop_ll, tmp_currB, tmp_propB); */
-  }
-
+	if(verbose > 0 && kk % verbose == 0){
+	  /*    Rprintf("%f %f %f %f %f %f \n", gcurr, gprop, gcurr_ll, gprop_ll, tmp_currB, tmp_propB); */
 	}
-           
+	
+      }
+       
+    
+      if(covprior==1){
+	gcurr_ll += dnorm(gcurr,REAL(Gammean)[rr + ng*cc] ,REAL(Gamsd)[rr + ng*cc] , 1) + dnorm(dcurr,REAL(Delmean)[rr + ng*cc] , REAL(Delsd)[rr + ng*cc], 1);
+	gprop_ll += dnorm(gprop,REAL(Gammean)[rr + ng*cc] ,REAL(Gamsd)[rr + ng*cc] , 1) + dnorm(dprop,REAL(Delmean)[rr + ng*cc] ,REAL(Delsd)[rr + ng*cc] , 1);
+      }
+
+      
+
+      
 
       if(acc_tog(gprop_ll, gcurr_ll) == 1){
 	REAL(gammamatrix)[rr + ng*cc] = gprop;
 	REAL(deltamatrix)[rr + ng*cc] = dprop;
 	REAL(g_acc)[rr + ng*cc] += 1;
       }
-      }
     }
+  }
 
 
     /*    for(rr = 0; rr < ng; ++rr){

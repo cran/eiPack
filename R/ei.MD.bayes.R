@@ -1,5 +1,6 @@
 ei.MD.bayes <- function(formula, covariate = NULL, total = NULL, data,
                         lambda1 = 4, lambda2 = 2,
+                        covariate.prior.list = NULL,
                         tune.list = NULL,
                         start.list = NULL,
                         sample = 1000,
@@ -7,10 +8,22 @@ ei.MD.bayes <- function(formula, covariate = NULL, total = NULL, data,
                         ret.beta = 'r', ret.mcmc = TRUE,
                         usrfun = NULL){
 
-if(!is.null(total)){
-  if(!is.numeric(total)){
-    if(is.character(total)){ total <- data[[total]]}else{
-      total <- data[[deparse(substitute(total))]]}}}
+
+  if(class(tune.list)=="tuneMD"){
+    if(identical(tune.list$call$lambda1, lambda1)==FALSE){
+      stop("tuning parameters assumed different prior for lambda1")}
+    
+    if(identical(tune.list$call$lambda2, lambda2)==FALSE){
+      stop("tuning parameters assumed different prior for lambda2")}
+    
+    if(identical(tune.list$call$covariate.prior.list, covariate.prior.list)==FALSE){
+      stop("tuning parameters assumed different prior for gamma and delta")}
+  }
+  
+  if(!is.null(total)){
+    if(!is.numeric(total)){
+      if(is.character(total)){ total <- data[[total]]}else{
+        total <- data[[deparse(substitute(total))]]}}}
   
 if(is.null(covariate)){
   
@@ -27,17 +40,21 @@ if(is.null(covariate)){
       start.alphas <- tune.list[[1]]
       start.betas <- tune.list[[2]]}
   
-  if(is.null(usrfun)){output <- BayesMDei(formula, data, total=total, lambda1 = lambda1, lambda2 = lambda2,
-                      tune.alpha = tune.alpha, tune.beta = tune.beta,
-                                          start.alphas = start.alphas,
-                                          start.betas = start.betas, sample = sample,
-                      thin = thin, burnin = burnin, verbose = verbose, ret.beta =
-                      ret.beta, ret.mcmc = ret.mcmc)
-		output <- list(list(output$Alpha, output$Beta, output$cell.count), list(output$alpha.acc, 
-output$beta.acc))
-	names(output) <- c("draws", "acc.ratios")
-	names(output$draws) <- c("Alpha", "Beta", "Cell.counts")
-	names(output$acc.ratios) <- c("alpha.acc", "beta.acc")}
+  if(is.null(usrfun)){
+    output <- BayesMDei(formula, data, total=total, lambda1 = lambda1,
+                        lambda2 = lambda2,
+                        tune.alpha = tune.alpha, tune.beta = tune.beta,
+                        start.alphas = start.alphas,
+                        start.betas = start.betas, sample = sample,
+                        thin = thin, burnin = burnin, verbose =
+                        verbose,
+                        ret.beta = ret.beta, ret.mcmc = ret.mcmc)
+
+    output <- list(list(output$Alpha, output$Beta, output$cell.count),
+                   list(output$alpha.acc, output$beta.acc))
+    names(output) <- c("draws", "acc.ratios")
+    names(output$draws) <- c("Alpha", "Beta", "Cell.counts")
+    names(output$acc.ratios) <- c("alpha.acc", "beta.acc")}
   else{output <- BayesMDei2(formula, data, total=total, lambda1 = lambda1, lambda2 = lambda2,
                       tune.alpha = tune.alpha, tune.beta = tune.beta,
                             start.alpha = start.alphas, start.betas =
@@ -62,8 +79,8 @@ output$beta.acc), output$usrfun)
       tune.beta <- tune.list[[2]]
       tune.gamma <- tune.list[[3]]
       tune.delta <- tune.list[[4]]}
-
-
+  
+  
   
   if(is.null(start.list)){
     start.dr <- NULL
@@ -78,9 +95,13 @@ output$beta.acc), output$usrfun)
   
   if(is.null(usrfun)){output <-  BayesMDei3cov(formula, covariate,
                                                total = total, data, lambda1 =
-                                               lambda1, lambda2 = lambda2,
-                      tune.dr = tune.dr, tune.beta = tune.beta,
-                      tune.gamma=tune.gamma, tune.delta = tune.delta,
+                                               lambda1, lambda2 =
+                                               lambda2,
+                                               covariateprior = covariate.prior.list,
+                                               tune.dr = tune.dr,
+                                               tune.beta = tune.beta,
+                                               tune.gamma=tune.gamma,
+                                               tune.delta = tune.delta,
                                                start.dr = start.dr,
                                                start.betas =
                                                start.betas,
@@ -89,8 +110,10 @@ output$beta.acc), output$usrfun)
                                                start.delta =
                                                start.delta,
                                                sample = sample,
-                      thin = thin, burnin = burnin, verbose = verbose, ret.beta =
-                      ret.beta, ret.mcmc = ret.mcmc)
+                                               thin = thin, burnin =
+                                               burnin,
+                                               verbose = verbose, ret.beta =
+                                               ret.beta, ret.mcmc = ret.mcmc)
 
 output <- list(list(output$Dr, output$Beta, output$Gamma, output$Delta, output$cell.count), list(output$dr.acc,   
 output$beta.acc, output$gamma.acc))
@@ -100,6 +123,7 @@ output$beta.acc, output$gamma.acc))
 }
     else{output <- BayesMDei4cov(formula, covariate, total = total, data, lambda1 =
                                  lambda1, lambda2 = lambda2,
+                                 covariateprior = covariate.prior.list,
                       tune.dr = tune.dr, tune.beta = tune.beta,
                       tune.gamma=tune.gamma, tune.delta = tune.delta,
                                  start.dr = start.dr,
@@ -117,6 +141,12 @@ output$beta.acc, output$gamma.acc), output$usrfun)
 }
 }
   output$call <- match.call()
+output$call$burnin <- burnin
+output$call$sample <- sample
+output$call$thin <- thin
+output$call$lambda1 <- lambda1
+output$call$lambda2 <- lambda2
+output$call$covariate.prior.list <- covariate.prior.list
   class(output) <- "eiMD"
   return(output)
 }

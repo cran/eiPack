@@ -16,7 +16,8 @@ lambda.reg.bayes        Calculate shares using data from Bayesian
 mergeMD                 Combine output from multiple eiMD objects
 plot.bounds             Plot of deterministic bounds for units
                         satisfying row thresholds
-read.betas              ~~function to do ... ~~
+read.betas              Function to read in eiMD parameter chains saved
+                        to disk
 redistrict              Redistricting Monte-Carlo data
 senc                    Party registration in south-east North Carolina
 tuneA                   Tuning parameters for alpha hyperpriors in RxC

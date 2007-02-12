@@ -8,7 +8,7 @@ drawing each parameter one at a time, target acceptance rates are between 0.4 to
 
 \usage{
 tuneMD(formula, covariate = NULL, data, ntunes = 10, 
-    sample = 1000, ...)
+    totaldraws = 10000, ...)
 }
 
 \arguments{
@@ -19,7 +19,7 @@ as the response}
 \item{data}{data frame containing the variables specified in \code{formula} and
 \code{covariate}}
 \item{ntunes}{number of times to iterate the tuning algorithm}
-\item{sample}{number of iterations for each tuning run}
+\item{totaldraws}{number of iterations for each tuning run}
 \item{...}{additional arguments passed to \code{\link{ei.MD.bayes}}}
 }
 

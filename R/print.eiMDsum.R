@@ -1,6 +1,7 @@
 print.eiMDsum <- function(x, digits = max(3, getOption("digits") - 4), ...) {
   cat("\nFormula: ", deparse(x$call$formula), "\n")
-  cat("Total sims: ", (x$call$burnin + x$call$sample) * x$call$thin, "\n")
+  cat("Total sims: ", (x$call$burnin) + (x$call$sample * x$call$thin), 
+"\n")
   cat("Burnin discarded: ", x$call$burnin, "\n")
   cat("Sims saved: ", x$call$sample, "\n\n")
 

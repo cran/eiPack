@@ -1,5 +1,5 @@
 ei.reg.bayes <- function(formula, data, sample=1000, weights 
-= NULL) { 
+= NULL, truncate=FALSE) { 
   D <- model.frame(formula, data = data)
   G <- D[[2]]
   T <- D[[1]]
@@ -74,31 +74,31 @@ please respecify data")
   }
   
   parties <- list()
-  for (i in 1:(ncol(T)-1)) {
+  for (i in 1:(ncol(T))) {
     beta <- bayes.regress(T[,i] ~ G - 1, data = data, sample = sample,
-                          weights = weights) 
+                          weights = weights, truncate=truncate) 
     parties[[colnames(T)[i]]] <- beta
     colnames(parties[[colnames(T)[i]]]) <- colnames(G)
   }
 
-  ridx <- colnames(parties[[1]])
-  tmp.no <- matrix(NA, nrow(parties[[1]]), length(ridx))
-  colnames(tmp.no) <- ridx
-  for (i in 1:length(ridx)){
-    tmp.sum <- rep(0, length(parties[[1]][,1]))
-    for(j in 1:length(parties)){
-      tmp.sum <- tmp.sum + parties[[j]][,i]
-    }
-    tmp.no[,ridx[i]] <- 1 - tmp.sum
-  }
-  NoVote <- tmp.no
+ # ridx <- colnames(parties[[1]])
+ # tmp.no <- matrix(NA, nrow(parties[[1]]), length(ridx))
+ # colnames(tmp.no) <- ridx
+ # for (i in 1:length(ridx)){
+ #   tmp.sum <- rep(0, length(parties[[1]][,1]))
+ #   for(j in 1:length(parties)){
+ #     tmp.sum <- tmp.sum + parties[[j]][,i]
+ #   }
+ #   tmp.no[,ridx[i]] <- 1 - tmp.sum
+ # }
+ # NoVote <- tmp.no
 
   draws <- array(NA, dim=c(ncol(G), ncol(T), sample))
   for(i in 1:sample){
     for(j in 1:length(parties)){
       draws[,j,i] <- parties[[j]][i,]
     }
-    draws[,(j+1),i] <- NoVote[i,]
+  #  draws[,(j+1),i] <- NoVote[i,]
   }
   rownames(draws) <- colnames(G)
   colnames(draws) <- colnames(T)

@@ -2,7 +2,8 @@
 \alias{lambda.MD}
 \title{Calculate shares using data from MD model}
 
-\description{Calculates the population share of row members in the selected columns.}
+\description{Calculates the population share of row members in a
+  particular column as a proportion of the total number of row members in the selected subset of columns.}
 
 \usage{
 lambda.MD(object, columns, ret.mcmc = TRUE)
@@ -20,6 +21,14 @@ objects.  If \code{FALSE}, samples are returned as arrays. }
 Returns either a ((\eqn{R}{R} * included columns) \eqn{\times}{x}
 samples) matrix as an \code{mcmc} object or a (\eqn{R \times}{R x}
 included columns \eqn{\times}{x} samples) array. 
+}
+
+\details{This function allows users to define subpopulations within the
+  data and calculate the proportion of individuals within each of the
+  columns that defines that subpopulation.  For example, if the model
+  includes the groups Democrat, Republican, and Unaffiliated, the
+  argument \code{columns = c(``Democrat", ``Republican")} will calculate
+  the two-party shares of Democrats and Republicans for each row.
 }
 
 \seealso{\code{\link{ei.MD.bayes}}}
