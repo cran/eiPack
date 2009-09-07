@@ -34,7 +34,8 @@ included columns \eqn{\times}{x} samples) array.
 \seealso{\code{\link{ei.MD.bayes}}}
 
 \author{
-  Michael Kellermann <\email{kellerm@fas.harvard.edu}> and Olivia Lau <\email{olau@fas.harvard.edu}>
+  Michael Kellermann <\email{kellerm@post.harvard.edu}> and Olivia Lau 
+<\email{olivia.lau@post.harvard.edu}>
 }
 
 \keyword{models}

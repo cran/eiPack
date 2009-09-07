@@ -15,14 +15,14 @@ the shares}
 }
 \value{
 Returns a list with the following elements 
-\itemize{ 
 \item{call}{the call to \code{lambda.reg}}
 \item{lambda}{an \eqn{R \times k}{R x k} matrix 
 where \eqn{k}{k} is the
 number of columns included in the share calculation}
 \item{se}{standard errors calculated using the delta method as implemented 
 in the library \code{msm}}
-}}
+}
+
 \details{
 Standard errors are calculated using the delta method as implemented in
 the library \code{msm}.  The arguments passed to
@@ -56,7 +56,7 @@ the library \code{msm}.  The arguments passed to
 \seealso{\code{\link{ei.reg}}}
 
 \author{
-  Ryan T. Moore <\email{rtmoore@fas.harvard.edu}>
+  Ryan T. Moore <\email{rtm@wustl.edu}>
 }
 
 \keyword{models}

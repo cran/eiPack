@@ -19,11 +19,11 @@ ei.reg.bayes(formula, data, sample = 1000, weights = NULL, truncate=FALSE)
   hypercube for the coefficients; if FALSE, an improper uniform prior is assumed}
 }
 
-\value{ A list containing \itemize{
+\value{ A list containing 
 \item{call}{the call to \code{ei.reg.bayes}}
 \item{draws}{A, \eqn{R \times C \times}{R x C x} sample array containing
   posterior draws for each population cell fraction}
-}}
+}
 
 \details{
   For \eqn{i \in 1,\ldots,C}{i in 1,...,C}, \eqn{C}{C} Bayesian regressions
@@ -52,7 +52,7 @@ ei.reg.bayes(formula, data, sample = 1000, weights = NULL, truncate=FALSE)
 
 
 \author{
-  Olivia Lau <\email{olau@fas.harvard.edu}> and Ryan T. Moore <\email{rtmoore@fas.harvard.edu}>
+  Olivia Lau <\email{olivia.lau@post.harvard.edu}> and Ryan T. Moore <\email{rtm@wustl.edu}>
 }
 
 \keyword{models}

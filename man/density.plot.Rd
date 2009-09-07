@@ -42,7 +42,7 @@ vectors, it must correspond to the number of row or column marginals selected.}
 \seealso{\code{plot}, \code{segments}, \code{par}}
 
 \author{
-  Olivia Lau <\email{olau@fas.harvard.edu}>
+  Olivia Lau <\email{olivia.lau@post.harvard.edu}>
 }
 
 \keyword{hplot}

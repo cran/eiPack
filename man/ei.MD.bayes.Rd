@@ -192,15 +192,14 @@ If the model is fit without a covariate , the list includes:
    with four elements must be provided for \code{covariate.prior.list}:
    \itemize{
 \item{\code{mu.delta}}{an \eqn{R \times (C-1)}{R x (C-1)} matrix of
-  prior means for Gamma}
+  prior means for Delta}
 \item{\code{sigma.delta}}{an \eqn{R \times (C-1)}{R x (C-1)} matrix of
   prior standard deviations for Delta} 
 \item{\code{mu.gamma}}{an \eqn{R \times (C-1)}{R x (C-1)} matrix of
   prior means for Gamma} 
-\item{\code{sigma.delta}}{an \eqn{R \times (C-1)}{R x (C-1)} matrix of
+\item{\code{sigma.gamma}}{an \eqn{R \times (C-1)}{R x (C-1)} matrix of
   prior standard deviations for Gamma}}  
 
-   
    
    Applying the model without a covariate is
    most reasonable in situations where one can think of individuals being
@@ -213,13 +212,12 @@ If the model is fit without a covariate , the list includes:
    assessing convergence.
    
    Because the conditional distributions are non-standard, draws from the
-   posterior are obtained by using a Metropolis-within-Bayes algorithm.
+   posterior are obtained by using a Metropolis-within-Gibbs algorithm.
    The proposal density for each parameter is a univariate normal
    distribution centered at the current parameter value with standard
    deviation equal to the tuning constant; the only exception is for
-   draws of \eqn{gamma_rc}{gamma_rc} and \eqn{delta_rc}{delta_rc}, which
+   draws of \eqn{\gamma_{rc}}{gamma_rc} and \eqn{\delta_{rc}}{delta_rc}, which
    use a bivariate normal proposal with covariance zero.  
-   
   
 The function will accept user-specified starting values as an argument.
 If the model includes a covariate, the starting values must be a list
@@ -276,11 +274,9 @@ If there is no covariate, the tuning parameters are a list with the following el
 	 Inference: The \eqn{R \times (C-1)}{R x (C-1)} Case.'' 
 	 \emph{Statistica Neerlandica} 55: 134-156.  }
 
-
-
 \author{
-  Michael Kellermann <\email{kellerm@fas.harvard.edu}> and Olivia Lau 
-<\email{olau@fas.harvard.edu}>
+  Michael Kellermann <\email{kellerm@post.harvard.edu}> and Olivia Lau 
+<\email{olivia.lau@post.harvard.edu}>
 }
 
 \seealso{\code{\link[eiPack]{lambda.MD}}, \code{\link[eiPack]{cover.plot}}, 

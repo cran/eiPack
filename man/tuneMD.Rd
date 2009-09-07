@@ -30,7 +30,7 @@ A list containing matrices of tuning parameters.
 \seealso{\code{\link{ei.MD.bayes}}}
 
 \author{
-  Olivia Lau <\email{olau@fas.harvard.edu}>
+  Olivia Lau <\email{olivia.lau@post.harvard.edu}>
 }
 
 \keyword{iteration}

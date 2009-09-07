@@ -1,4 +1,6 @@
 read.betas <- function(rows, columns, units, dir = NULL, ret.mcmc = TRUE) {
+  "%w/o%" <- function(x,y) x[!x %in% y] #--  x without y
+
   idx <- expand.grid(rows, columns, units)
   idx <- apply(idx, 1, paste, collapse = ".")
   files <- paste(idx, ".txt.gz", sep = "")

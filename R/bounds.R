@@ -102,7 +102,7 @@ please respecify data")
   idx <- list()
 
   for(i in rows){
-    idx[[i]] <- which(prop.rows[[i]] > threshold)
+    idx[[i]] <- which(prop.rows[[i]] >= threshold)
   }
 
   if(all(lapply(idx, length) == 0)){
@@ -128,9 +128,9 @@ threshold")
       rownames(T.tmp) <- idx[[i]]
 
       if(nrow(T.tmp)>1){
-        mat[,1] <- pmax(0,G[idx[[i]],i]- apply(T.tmp[, colnames(T)
+        mat[,1] <- pmax(0,G[idx[[i]],i]- apply(as.matrix(T.tmp[, colnames(T)
                                                      %wo%
-                                                     column],1,sum))
+                                                     column]),1,sum))
         mat[,2] <- apply(cbind(G[idx[[i]],i],
                                apply(as.matrix(T.tmp[, colnames(T)
                                                  %wo%
@@ -162,6 +162,7 @@ threshold")
 
       bounds.out[[bound.names[count]]] <-
         cbind(mat[,1]/(mat[,1]+mat[,2]), mat[,3]/(mat[,3]+mat[,4]))
+      bounds.out[[bound.names[count]]][which(mat[,3]+mat[,4]==0),]<-0
       rownames(bounds.out[[bound.names[count]]]) <- idx[[i]]
       colnames(bounds.out[[bound.names[count]]]) <- c("lower",
                                                       "upper")

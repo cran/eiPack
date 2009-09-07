@@ -29,7 +29,7 @@ read.betas(rows, columns, units, dir = NULL, ret.mcmc = TRUE)
   array with dimensions named according to the selected \code{rows},
   \code{columns}, and \code{units}. 
 }
-\author{Olivia Lau <olau@fas.harvard.edu>}
+\author{Olivia Lau <olivia.lau@post.harvard.edu>}
 \seealso{\code{\link{ei.MD.bayes}},\code{mcmc}}
 \keyword{IO}
 \keyword{utilities}

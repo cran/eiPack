@@ -26,7 +26,7 @@ delta <- function(object, cols){
 
   for(i in 1:nrow(se)){
       se[i,] <- msm::deltamethod(delta.formula,
-                                  m=object[["coef"]][i,cols],
+                                  m=object[["coefficients"]][i,cols],
                                   cov=diag(cov.array[i,i,cols]))
     }
   se

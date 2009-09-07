@@ -21,7 +21,7 @@ lambda.MD <- function(object, columns, ret.mcmc = TRUE){
   }
   else { 
     idx <- names(object$draws$Cell.counts)[1:2]
-    sims <- dims(cc)[3]
+    sims <- dim(cc)[3]
   }
   names(idx) <- c("rows", "columns")
   NG <- length(idx[[1]])

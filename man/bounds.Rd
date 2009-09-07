@@ -30,13 +30,12 @@ bounds(formula, data, rows, column, excluded = NULL,
     \code{total} identifies the name of the variable in \code{data} containing the
     total number of individuals in each unit}
 }
-\value{ A list with elements \itemize{
+\value{ A list with elements 
   \item{bounds}{a list of deterministic bounds for all units in which
     row proportions meet the threshold}
   \item{intersection}{if the intersection of the deterministic bounding
     intervals is non-empty, the intersection is returned.  Otherwise,
     \code{NA} is returned.}
-  }
 }
 \seealso{\code{plot.bounds}}
 
@@ -46,7 +45,7 @@ bounds(formula, data, rows, column, excluded = NULL,
 }
 
 \author{
-  Ryan T. Moore <\email{rtmoore@fas.harvard.edu}>
+  Ryan T. Moore <\email{rtm@wustl.edu}>
 }
 
 \keyword{models}

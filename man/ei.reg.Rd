@@ -12,11 +12,11 @@ ei.reg(formula, data, ...)
 \item{formula}{An R formula object of the form \code{cbind(c1, c2, ...)
     ~ cbind(r1, r2, ...)}} 
 \item{data}{data frame containing the variables specified in \code{formula}}
-\item{\dots}{Additional arguments passed to \code{\link[base]{lm}}. }  
+\item{\dots}{Additional arguments passed to \code{\link[stats]{lm}}. }  
 }
 
 
-\value{A list containing \itemize{
+\value{A list containing 
     \item{call}{the call to \code{ei.reg}}
     \item{coefficients}{an \eqn{R \times C}{R x C} matrix of estimated
       population cell fractions}
@@ -24,7 +24,6 @@ ei.reg(formula, data, ...)
     for \code{coefficients}.}
     \item{cov.matrices}{A list of the \eqn{C}{C} scaled variance-covariance
       matrices for each of the ecological regressions}
-  }
 }
 
 \details{
@@ -63,7 +62,7 @@ ei.reg(formula, data, ...)
  }
 
 \author{
-  Olivia Lau <\email{olau@fas.harvard.edu}> and Ryan T. Moore <\email{rtmoore@fas.harvard.edu}>
+  Olivia Lau <\email{olivia.lau@post.harvard.edu}> and Ryan T. Moore <\email{rtm@wustl.edu}>
 }
 
 \keyword{models}

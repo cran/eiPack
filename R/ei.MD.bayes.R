@@ -37,8 +37,8 @@ if(is.null(covariate)){
   if(is.null(start.list)){
     start.alphas <- NULL
     start.betas <- NULL}else{
-      start.alphas <- tune.list[[1]]
-      start.betas <- tune.list[[2]]}
+      start.alphas <- start.list[[1]]
+      start.betas <- start.list[[2]]}
   
   if(is.null(usrfun)){
     output <- BayesMDei(formula, data, total=total, lambda1 = lambda1,
@@ -87,10 +87,10 @@ output$beta.acc), output$usrfun)
     start.betas <- NULL
     start.gamma <- NULL
     start.delta <- NULL}else{
-      start.dr <- tune.list[[1]]
-      start.betas <- tune.list[[2]]
-      start.gamma <- tune.list[[3]]
-      start.delta <- tune.list[[4]]}
+      start.dr <- start.list[[1]]
+      start.betas <- start.list[[2]]
+      start.gamma <- start.list[[3]]
+      start.delta <- start.list[[4]]}
   
   
   if(is.null(usrfun)){output <-  BayesMDei3cov(formula, covariate,

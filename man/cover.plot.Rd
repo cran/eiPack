@@ -43,7 +43,7 @@ cover.plot(object, row, column, x = NULL, CI = 0.95,
 \seealso{\code{plot}, \code{segments}, \code{par}}
 
 \author{
-  Olivia Lau <\email{olau@fas.harvard.edu}>
+  Olivia Lau <\email{olivia.lau@post.harvard.edu}>
 }
 
 \keyword{hplot}

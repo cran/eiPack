@@ -32,7 +32,7 @@ plot.bounds(x, row, column, labels = TRUE, order = NULL,
 \seealso{\code{bounds}}
 
 \author{
-  Ryan T. Moore <\email{rtmoore@fas.harvard.edu}>
+  Ryan T. Moore <\email{rtm@wustl.edu}>
 }
 
 \keyword{hplot}

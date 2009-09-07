@@ -34,7 +34,7 @@ Returns an \code{eiMD} object of the same format as the input.
 
 
 \author{
-  Michael Kellermann <\email{kellerm@fas.harvard.edu}>
+  Michael Kellermann <\email{kellerm@post.harvard.edu}>
 }
 
 \seealso{\code{\link[eiPack]{ei.MD.bayes}}}
