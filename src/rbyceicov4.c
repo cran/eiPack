@@ -70,7 +70,7 @@ rbycei_fcn4 (SEXP drvector,
   npm1 = np - 1;
   lambda1 = REAL(Lambda1)[0];
   lambda2 = REAL(Lambda2)[0];
-  
+  covprior = INTEGER(Covprior)[0];  
 
   samp = INTEGER(Sample)[0];
   thin = INTEGER(Thin)[0];

@@ -1,7 +1,7 @@
 Package: eiPack
 Type: Package
-Version: 0.1-5
-Date: 2009-09-07
+Version: 0.1-6
+Date: 2009-10-14
 Title: eiPack: Ecological Inference and Higher-Dimension Data
         Management
 Author: Olivia Lau <olivia.lau@post.harvard.edu>, Ryan T. Moore
@@ -14,6 +14,6 @@ Description: Provides methods for analyzing RxC ecological contingency
         provides tools for manipulating higher-dimension data objects.
 License: GPL (>= 2)
 URL: http://www.olivialau.org/software
-Packaged: 2009-09-07 17:05:03 UTC; olau
+Packaged: 2009-10-14 12:23:20 UTC; olau
 Repository: CRAN
-Date/Publication: 2009-09-07 22:27:19
+Date/Publication: 2009-10-14 13:12:14
