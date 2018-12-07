@@ -52,7 +52,7 @@ ei.reg.bayes(formula, data, sample = 1000, weights = NULL, truncate=FALSE)
 
 
 \author{
-  Olivia Lau <\email{olivia.lau@post.harvard.edu}> and Ryan T. Moore <\email{rtm@wustl.edu}>
+  Olivia Lau <\email{olivia.lau@post.harvard.edu}> and Ryan T. Moore <\email{rtm@american.edu}>
 }
 
 \keyword{models}

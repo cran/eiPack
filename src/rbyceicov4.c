@@ -50,7 +50,7 @@ rbycei_fcn4 (SEXP drvector,
 
   int nProtected = 0, nComps = 0, counter = 0;
 
-  R_len_t ii, rr, cc, tt, qq, kk; 
+  R_len_t ii, rr, cc, qq, kk; 
   SEXP ccount, usr, hldr; 
   SEXP usr_list, dr_dim, beta_dim, gamma_dim, delta_dim, TT_dim, RR_dim; 
   SEXP dr_acc, b_acc, g_acc, d_acc; 

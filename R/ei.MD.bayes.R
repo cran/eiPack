@@ -57,7 +57,7 @@ if(is.null(covariate)){
     names(output$acc.ratios) <- c("alpha.acc", "beta.acc")}
   else{output <- BayesMDei2(formula, data, total=total, lambda1 = lambda1, lambda2 = lambda2,
                       tune.alpha = tune.alpha, tune.beta = tune.beta,
-                            start.alpha = start.alphas, start.betas =
+                            start.alphas = start.alphas, start.betas =
                             start.betas,
                             sample = sample,
                       thin = thin, burnin = burnin, verbose = verbose, ret.beta =

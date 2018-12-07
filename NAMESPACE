@@ -1,8 +1,8 @@
-useDynLib(eiPack)
+useDynLib(eiPack, .registration = TRUE)
 
 export(	bounds,
 	cover.plot,
-	density.plot,
+	densityplot,
 	ei.MD.bayes, 
 	ei.reg.bayes,
 	ei.reg,
@@ -15,9 +15,17 @@ export(	bounds,
 	tuneMD
 )
 
-S3method(density.plot, lambdaMD)
-S3method(density.plot, lambdaReg)
-S3method(density.plot, lambdaRegBayes)
+
+importFrom("grDevices", "rainbow")
+importFrom("graphics", "abline", "axis", "lines", "par", "plot", "segments", "text")
+importFrom("stats", "as.formula", "density", "dnorm", "lm", "median", "model.frame", "model.matrix", "model.response", "na.omit", "quantile", "rchisq", "rgamma", "rnorm", "sd")
+importFrom("utils", "read.table")
+importFrom("MASS", "mvrnorm")
+importFrom("coda", "is.mcmc", "as.mcmc", "mcmc", "mcpar")
+
+S3method(densityplot, lambdaMD)
+S3method(densityplot, lambdaReg)
+S3method(densityplot, lambdaRegBayes)
 S3method(summary, eiRegBayes)
 S3method(summary, eiReg)
 S3method(summary, eiMD)

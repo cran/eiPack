@@ -45,7 +45,7 @@ bounds(formula, data, rows, column, excluded = NULL,
 }
 
 \author{
-  Ryan T. Moore <\email{rtm@wustl.edu}>
+  Ryan T. Moore <\email{rtm@american.edu}>
 }
 
 \keyword{models}

@@ -1,4 +1,5 @@
 \name{plot.bounds}
+\alias{plot}
 \alias{plot.bounds}
 \title{Plot of deterministic bounds for units satisfying row thresholds}
 
@@ -6,7 +7,7 @@
   row members within a specified column.}
 
 \usage{
-plot.bounds(x, row, column, labels = TRUE, order = NULL,
+\method{plot}{bounds}(x, row, column, labels = TRUE, order = NULL,
     intersection = TRUE, xlab, ylab, col = par("fg"), 
     lty = par("lty"), lwd = par("lwd"), ...)
 }
@@ -32,7 +33,7 @@ plot.bounds(x, row, column, labels = TRUE, order = NULL,
 \seealso{\code{bounds}}
 
 \author{
-  Ryan T. Moore <\email{rtm@wustl.edu}>
+  Ryan T. Moore <\email{rtm@american.edu}>
 }
 
 \keyword{hplot}

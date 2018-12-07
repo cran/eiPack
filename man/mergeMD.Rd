@@ -24,7 +24,7 @@ Returns an \code{eiMD} object of the same format as the input.
 \references{
       Martyn Plummer, Nicky Best, Kate Cowles, and Karen Vines. 2002.
      \emph{Output Analysis and Diagnostics for MCMC (CODA)}. \url{
-     http://www-fis.iarc.fr/coda/}.
+      https://CRAN.R-project.org/package=coda}.
 
 	 Ori Rosen, Wenxin Jiang, Gary King, and Martin A. Tanner.
 	 2001.  ``Bayesian and Frequentist Inference for Ecological
@@ -34,7 +34,7 @@ Returns an \code{eiMD} object of the same format as the input.
 
 
 \author{
-  Michael Kellermann <\email{kellerm@post.harvard.edu}>
+  Michael Kellermann <\email{mrkellermann@gmail.com}>
 }
 
 \seealso{\code{\link[eiPack]{ei.MD.bayes}}}

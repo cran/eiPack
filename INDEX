@@ -2,7 +2,7 @@ bounds                  Deterministic bounds for units satisfying row
                         thresholds
 cover.plot              Unit-level coverage plots for beta parameters
                         from MD EI model
-density.plot            Density plots for population level parameters
+densityplot             Density plots for population level parameters
 ei.MD.bayes             Multinomial Dirichlet model for Ecological
                         Inference in RxC tables
 ei.reg                  Ecological regression

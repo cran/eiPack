@@ -1,16 +1,13 @@
-density.plot.lambdaMD <- function(x, by = "column", col, 
-                                  xlim = c(0,1), ylim,  
-                                  main = "", sub = NULL, xlab,
-                                  ylab, lty = par("lty"), lwd = par("lwd"), ...) {
+densityplot.lambdaRegBayes <- function(x, by = "column", col, 
+                                        xlim, ylim,  
+                                        main = "", sub = NULL, xlab,
+                                        ylab, lty = par("lty"), lwd = par("lwd"), ...) {
   readpars <- par(no.readonly = TRUE)
-  if (all(class(x) != "lambdaMD"))
-    stop("works only with output from `lambda.MD'")
-
   getY <- function(x) x[[1]]$y
+  getX <- function(x) x[[1]]$x
   get2 <- function(x) x[2]
-  
-  tnames <- strsplit(colnames(x), "lambda.")
-  idx <- strsplit(sapply(tnames, get2), ".", fixed = TRUE)
+
+  idx <- strsplit(dimnames(x)[2][[1]], ".", fixed = TRUE)
   idx <- as.list(as.data.frame(matrix(unlist(idx), byrow = TRUE,
                                       nrow = length(idx), ncol = 
                                       length(idx[[1]]))))
@@ -24,9 +21,14 @@ density.plot.lambdaMD <- function(x, by = "column", col,
                dimnames = list(rows = idx[[1]], columns = idx[[2]],
                  simulations = 1:nrow(x)))
   }
+
   dens <- apply(x, c(1,2), density)
   if (missing(ylim)) { 
     ylim <- apply(apply(dens, c(1,2), getY), c(2,3), max)
+  }
+  if (missing(xlim)) {
+    XX <- apply(dens, c(1,2), getX)
+    xlim <- c(min(XX, 0), max(XX, 1))
   }
   
   if (by == "row") { 
@@ -57,6 +59,8 @@ density.plot.lambdaMD <- function(x, by = "column", col,
       
       for (jj in idx[[2]][2:lidx[2]])
         lines(dens[ii,jj][[1]], lty = lty, lwd = lwd, col = col[jj])
+      abline(v = 0, col = "grey50")
+      abline(v = 1, col = "grey50")
     }
   }
   if (by == "column") {
@@ -88,6 +92,8 @@ density.plot.lambdaMD <- function(x, by = "column", col,
            lwd = lwd)
       for (jj in idx[[1]][2:lidx[1]])
         lines(dens[jj,ii][[1]], lty = lty, lwd = lwd, col = col[jj])
+      abline(v = 0, col = "grey50")
+      abline(v = 1, col = "grey50")
     }
   }
   par(readpars)

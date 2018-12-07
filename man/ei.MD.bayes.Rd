@@ -267,7 +267,7 @@ If there is no covariate, the tuning parameters are a list with the following el
 \references{
       Martyn Plummer, Nicky Best, Kate Cowles, and Karen Vines. 2002.
      \emph{Output Analysis and Diagnostics for MCMC (CODA)}. \url{
-     http://www-fis.iarc.fr/coda/}.
+      https://CRAN.R-project.org/package=coda}.
 
 	 Ori Rosen, Wenxin Jiang, Gary King, and Martin A. Tanner.
 	 2001.  ``Bayesian and Frequentist Inference for Ecological
@@ -275,7 +275,7 @@ If there is no covariate, the tuning parameters are a list with the following el
 	 \emph{Statistica Neerlandica} 55: 134-156.  }
 
 \author{
-  Michael Kellermann <\email{kellerm@post.harvard.edu}> and Olivia Lau 
+  Michael Kellermann <\email{mrkellermann@gmail.com}> and Olivia Lau 
 <\email{olivia.lau@post.harvard.edu}>
 }
 

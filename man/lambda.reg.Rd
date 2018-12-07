@@ -56,7 +56,7 @@ the library \code{msm}.  The arguments passed to
 \seealso{\code{\link{ei.reg}}}
 
 \author{
-  Ryan T. Moore <\email{rtm@wustl.edu}>
+  Ryan T. Moore <\email{rtm@american.edu}>
 }
 
 \keyword{models}

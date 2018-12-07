@@ -57,9 +57,8 @@ cellcount (SEXP betas,
        SEXP Precincts){
 
   int nProtect = 0; 
-  R_len_t rr, cc, ii, nn;
+  R_len_t rr, cc, ii;
   int ng, np, prec;
-  nn = length(betas);
   double tmp = 0.0;  
   
   ng = INTEGER(NG)[0];
@@ -93,9 +92,8 @@ logbetamat (SEXP aa,
        SEXP Precincts){
 
   int nProtect = 0; 
-  R_len_t rr, cc, ii, nn;
+  R_len_t rr, cc, ii;
   int ng, np, prec;
-  nn = length(aa);
   double tmp = 0.0;  
   
   ng = INTEGER(NG)[0];

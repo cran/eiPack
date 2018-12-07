@@ -24,7 +24,7 @@ lambda.reg.bayes(object, columns, ret.mcmc = TRUE)
 \seealso{\code{\link{ei.reg.bayes}}}
 
 \author{
-  Ryan T. Moore <\email{rtm@wustl.edu}>
+  Ryan T. Moore <\email{rtm@american.edu}>
 }
 
 \keyword{models}

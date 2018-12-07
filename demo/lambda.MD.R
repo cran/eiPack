@@ -10,5 +10,5 @@ out <- ei.MD.bayes(cbind(dem, rep, novote) ~ cbind(black, white, hispanic),
              thin = 200, burnin = 0, verbose = 1000)
 
 lambda <- lambda.MD(out, c("dem", "rep"))
-density.plot(lambda)
+densityplot(lambda)
 

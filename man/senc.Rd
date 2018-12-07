@@ -34,6 +34,6 @@ affiliation}
 }}
 
 \source{Excerpted from North Carolina General Assembly 2001 redistricting data, 
-\url{http://www.ncga.state.nc.us/redistricting/Archives/Data/2001/available_data.html}}
+\url{https://www2.ncleg.net/RnR/Redistricting/BaseData2001}}
 
 \keyword{datasets}

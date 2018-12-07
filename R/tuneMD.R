@@ -27,7 +27,7 @@ tuneMD <- function(formula, covariate = NULL, data, ntunes = 10, totaldraws = 10
       tl <- list(tune.alpha = tuneA, tune.beta = tuneB)
       tmp <- ei.MD.bayes(formula, covariate = covariate, data = data,
                          sample = sample, thin = thin, burnin=burnin,
-                         tune = tl, ...)
+                         tune.list = tl, ...)
       Beta <- array(tmp$acc.ratios$beta.acc, dim = c(ng, npm1, precincts))
       Alpha <- matrix(tmp$acc.ratios$alpha.acc, nrow = ng, ncol = np)
       for (ii in 1:precincts) {

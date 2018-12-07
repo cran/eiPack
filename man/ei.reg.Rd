@@ -62,7 +62,7 @@ ei.reg(formula, data, ...)
  }
 
 \author{
-  Olivia Lau <\email{olivia.lau@post.harvard.edu}> and Ryan T. Moore <\email{rtm@wustl.edu}>
+  Olivia Lau <\email{olivia.lau@post.harvard.edu}> and Ryan T. Moore <\email{rtm@american.edu}>
 }
 
 \keyword{models}

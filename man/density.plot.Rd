@@ -1,18 +1,27 @@
-\name{density.plot}
-\alias{density.plot}
+\name{densityplot}
+\alias{densityplot}
+\alias{densityplot.lambdaMD}
+\alias{densityplot.lambdaReg}
+\alias{densityplot.lambdaRegBayes}
 
 \title{Density plots for population level parameters}
 
 \description{Generates a density plot for population level quantities of
   interest output by \code{\link{lambda.MD}}, \code{\link{lambda.reg}},
   and \code{\link{lambda.reg.bayes}}.  For the Bayesian methods,
-  \code{density.plot} plots the kernel density for the draws.  For the
-  frequentist \code{\link{lambda.reg}} method, \code{density.plot} plots
+  \code{densityplot} plots the kernel density for the draws.  For the
+  frequentist \code{\link{lambda.reg}} method, \code{densityplot} plots
 the canonical Normal density conditional on the mean and standard error
 output by \code{\link{lambda.reg}}.}
 
 \usage{
-density.plot(x, by = "column", col, xlim, ylim,
+\method{densityplot}{lambdaMD}(x, by = "column", col, xlim, ylim,
+             main = "", sub = NULL, xlab, ylab,
+             lty = par("lty"), lwd = par("lwd"), ...)
+\method{densityplot}{lambdaRegBayes}(x, by = "column", col, xlim, ylim,
+             main = "", sub = NULL, xlab, ylab,
+             lty = par("lty"), lwd = par("lwd"), ...)
+\method{densityplot}{lambdaReg}(x, by = "column", col, xlim, ylim,
              main = "", sub = NULL, xlab, ylab,
              lty = par("lty"), lwd = par("lwd"), ...)
 }
