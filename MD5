@@ -1,5 +1,5 @@
 263b03fca1747f78c6f7dc74e8d028b3 *COPYING
-3c2dd150de32105c6903776cdec066f6 *DESCRIPTION
+f43dd05e409d70ca3fd0b14970e66be1 *DESCRIPTION
 c530e5002d84866e37517ff1a2d01dff *INDEX
 9fa8ae7e789eddfbb1a56a7173300100 *LICENSE
 65817621f2e4e8e99d6a2555dd34063f *NAMESPACE
@@ -74,7 +74,7 @@ d36799714819182e168e69e7da3fe7c1 *man/tuneMD.Rd
 4863d10fa484c6d9e4379456d8a052fc *src/eiutil.c
 478471b7b4f9bf196ecd24420923f171 *src/eiutil.h
 b16f3f1d4e761c556a6832d88d6a4f9a *src/init.c
-a8c304d4ea6ed7a101505997104c2c46 *src/rbycei.c
-a29205bf8f9870302c7302b615d5f1f1 *src/rbycei2.c
-98a61246b8232cc13c23140bf7a4a1ef *src/rbyceicov2.c
-93b9946b69657a4cd0211ca19fb1cb9c *src/rbyceicov4.c
+848e713da3ecde4e1ef06820e6466e44 *src/rbycei.c
+a9535054b14a5a827e60e3425b7c623d *src/rbycei2.c
+c3c7e50eb69801765d0a5836ae3d63f9 *src/rbyceicov2.c
+bd524a2bae5d10d9c32f7ce5bc7d479d *src/rbyceicov4.c
