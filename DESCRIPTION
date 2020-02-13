@@ -1,7 +1,7 @@
 Package: eiPack
 Type: Package
-Version: 0.1-9
-Date: 2019-03-13
+Version: 0.2-1
+Date: 2020-02-12
 Title: Ecological Inference and Higher-Dimension Data Management
 Author: Olivia Lau <olivia.lau@post.harvard.edu>, Ryan T. Moore
         <rtm@american.edu>, Michael Kellermann <mrkellermann@gmail.com>
@@ -16,6 +16,6 @@ Description: Provides methods for analyzing R by C ecological contingency
 License: GPL (>= 2) | file LICENSE
 URL: http://www.olivialau.org/software
 NeedsCompilation: yes
-Packaged: 2019-03-13 04:47:37 UTC; Michael Kellermann
+Packaged: 2020-02-13 05:58:54 UTC; Michael Kellermann
 Repository: CRAN
-Date/Publication: 2019-03-13 13:50:10 UTC
+Date/Publication: 2020-02-13 07:10:02 UTC

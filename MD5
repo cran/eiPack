@@ -1,5 +1,5 @@
 263b03fca1747f78c6f7dc74e8d028b3 *COPYING
-f43dd05e409d70ca3fd0b14970e66be1 *DESCRIPTION
+cd26aa8887a91b35d6218b0f1ec2546e *DESCRIPTION
 c530e5002d84866e37517ff1a2d01dff *INDEX
 9fa8ae7e789eddfbb1a56a7173300100 *LICENSE
 65817621f2e4e8e99d6a2555dd34063f *NAMESPACE
@@ -67,14 +67,14 @@ b2c26c2facc4ef1ab9a471b3bf68f843 *man/mergeMD.Rd
 a13d5efca8271e354522610b9ea0b2ee *man/plot.bounds.Rd
 c08da2b9f088e9bd337391968d41043f *man/read.betas.Rd
 9ff3815fcd93a897df42d4ddec561387 *man/redistrict.Rd
-f2ce93e13a2d68f199f973ea9ef9d724 *man/senc.Rd
+dfd9b38d54f61e6a28c482f6955b3c73 *man/senc.Rd
 b7846be622595c601aa2e5ac56e8ec84 *man/tuneA.Rd
 7d1ce4741d59a1dcf56f11cc8d294bba *man/tuneB.Rd
 d36799714819182e168e69e7da3fe7c1 *man/tuneMD.Rd
-4863d10fa484c6d9e4379456d8a052fc *src/eiutil.c
+2b415bc17af7b6e382418146e684055c *src/eiutil.c
 478471b7b4f9bf196ecd24420923f171 *src/eiutil.h
 b16f3f1d4e761c556a6832d88d6a4f9a *src/init.c
-848e713da3ecde4e1ef06820e6466e44 *src/rbycei.c
-a9535054b14a5a827e60e3425b7c623d *src/rbycei2.c
-c3c7e50eb69801765d0a5836ae3d63f9 *src/rbyceicov2.c
-bd524a2bae5d10d9c32f7ce5bc7d479d *src/rbyceicov4.c
+11187298f7035304384c2c81393867d9 *src/rbycei.c
+0df90e2de6abe68e991cda8fa8d62e6d *src/rbycei2.c
+70fbc42485e4f68a4950ba9c275925ff *src/rbyceicov2.c
+b230608fcbf1730914cb6980894cd795 *src/rbyceicov4.c
