@@ -1,7 +1,7 @@
 lambda.MD <- function(object, columns, ret.mcmc = TRUE){
 
   get2 <- function(x) x[2]
-  if (class(object) != "eiMD")
+  if (inherits(object, "eiMD")==FALSE)
     stop("'object' must be output from 'ei.MD.bayes'")
   if (missing(columns) | length(columns) < 2)
     stop("'columns' requires at least two column names")
